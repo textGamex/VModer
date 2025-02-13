@@ -92,11 +92,11 @@
 		]
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -b",
-		"watch": "tsc -b -w",
+		"vscode:prepublish": "npm run esbuild-base -- --minify",
+		"esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
+		"compile": "npm run esbuild-base -- --sourcemap",
+		"watch": "npm run esbuild-base -- --sourcemap --watch",
 		"lint": "eslint",
-		"postinstall": "npm install",
 		"test": "sh ./scripts/e2e.sh"
 	},
 	"devDependencies": {
@@ -106,6 +106,7 @@
 		"@types/node": "^20",
 		"@types/vscode": "^1.75.1",
 		"@vscode/test-electron": "^2.3.9",
+		"esbuild": "^0.25.0",
 		"eslint": "^9.13.0",
 		"mocha": "^10.3.0",
 		"typescript": "^5.7.2",
