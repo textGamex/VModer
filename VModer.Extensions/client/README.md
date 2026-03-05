@@ -6,6 +6,9 @@ Language: 简体中文 | [English](https://github.com/textGamex/VModer/blob/main
 
 ---
 
+开发了一个新的国策树可视化编辑器, 欢迎体验, 下载链接:
+[安装版](https://packages.paradoxtarget.top/ParadoxArt-win-x64-stable-Setup.exe) | [便携版](https://packages.paradoxtarget.top/ParadoxArt-win-x64-stable-Portable.zip)
+
 ## 赞助
 
 如果您觉得此扩展帮助了您, 可以通过爱发电请我喝一杯奶茶, 这有助于我持续开发此扩展

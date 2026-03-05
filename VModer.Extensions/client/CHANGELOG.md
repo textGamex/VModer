@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.14.0
+
+- .NET 版本升级为 .NET 10
+- 修饰符可视化新增勋章修饰符的显示支持
+
+开发了一个新的国策树可视化编辑器, 欢迎体验, 下载链接:
+[安装版](https://packages.paradoxtarget.top/ParadoxArt-win-x64-stable-Setup.exe) | [便携版](https://packages.paradoxtarget.top/ParadoxArt-win-x64-stable-Portable.zip)
+
 ## 0.13.1
 
 - fix: 补充新版本更新的 Modifiers (更新由 爱发电@雨诉 驱动)
