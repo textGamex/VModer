@@ -8,6 +8,7 @@ using VModer.Core.Models.Modifiers;
 using VModer.Core.Services.GameResource;
 using VModer.Core.Services.GameResource.Localization;
 using VModer.Core.Services.GameResource.Modifiers;
+using ZLinq;
 
 namespace VModer.Core.Services;
 
@@ -54,6 +55,7 @@ public sealed class ModifiersMessageService
         );
 
         _modifierDto = modifiers
+            .AsValueEnumerable()
             .Select(message => new ModifierDto
             {
                 Name = message.Name,

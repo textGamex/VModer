@@ -11,8 +11,9 @@ public static class ModifierHelper
     {
         var fileType = GameFileType.FromFilePath(request.TextDocument.Uri.Uri.ToSystemPath());
         return fileType == GameFileType.Modifiers
-               || node.Key.Equals("modifier", StringComparison.OrdinalIgnoreCase)
-               || node.Key.Equals("modifiers", StringComparison.OrdinalIgnoreCase)
-               || node.Key.Equals(Keywords.HiddenModifier, StringComparison.OrdinalIgnoreCase);
+            || node.Key.Equals("modifier", StringComparison.OrdinalIgnoreCase)
+            || node.Key.Equals("modifiers", StringComparison.OrdinalIgnoreCase)
+            || node.Key.Equals(Keywords.HiddenModifier, StringComparison.OrdinalIgnoreCase)
+            || node.Key.EqualsIgnoreCase("unit_modifiers");
     }
 }
