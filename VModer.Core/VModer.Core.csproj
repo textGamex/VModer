@@ -42,8 +42,9 @@
       <PackageReference Include="NeoLua" Version="1.3.20-beta.1" />
       <PackageReference Include="NLog" Version="6.1.4" />
       <PackageReference Include="NLog.Extensions.Logging" Version="6.1.4" />
-      <PackageReference Include="ParadoxPower" Version="0.12.2-beta" />
+      <PackageReference Include="ParadoxPower" Version="0.13.1-beta" />
       <PackageReference Include="ParadoxPower.CSharpExtensions" Version="0.8.1-beta" />
+      <PackageReference Include="ParadoxPower.ZLinq" Version="0.2.1" />
       <PackageReference Include="Pfim" Version="0.11.4" />
       <PackageReference Include="Pidgin" Version="3.5.1" />
       <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />

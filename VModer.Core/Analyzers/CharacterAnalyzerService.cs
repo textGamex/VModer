@@ -1,10 +1,12 @@
 ﻿using EmmyLua.LanguageServer.Framework.Protocol.Model.Diagnostic;
 using ParadoxPower.CSharpExtensions;
 using ParadoxPower.Process;
+using ParadoxPower.ZLinq;
 using VModer.Core.Extensions;
 using VModer.Core.Models.Character;
 using VModer.Core.Services.GameResource;
 using VModer.Languages;
+using ZLinq;
 
 namespace VModer.Core.Analyzers;
 
@@ -21,14 +23,14 @@ public sealed class CharacterAnalyzerService
     {
         var list = new List<Diagnostic>();
         foreach (
-            var charactersNode in rootNode.Nodes.Where(node =>
+            var charactersNode in rootNode.NodesValue.Where(node =>
                 node.Key.Equals("characters", StringComparison.OrdinalIgnoreCase)
             )
         )
         {
-            foreach (var character in charactersNode.Nodes)
+            foreach (var character in charactersNode.NodesValue)
             {
-                foreach (var childNode in character.Nodes)
+                foreach (var childNode in character.NodesValue)
                 {
                     if (
                         !Array.Exists(
@@ -51,16 +53,18 @@ public sealed class CharacterAnalyzerService
     private void AnalyzeCharacter(Node generalNode, List<Diagnostic> list)
     {
         var skillType = SkillCharacterType.FromCharacterType(generalNode.Key);
-        foreach (var skillLeaf in generalNode.Leaves)
+        foreach (var skillLeaf in generalNode.LeavesValue)
         {
             if (!skillLeaf.Value.TryGetInt(out int value))
             {
                 continue;
             }
 
-            var skill = SkillType.List.FirstOrDefault(skill =>
-                skill.Value.Equals(skillLeaf.Key, StringComparison.OrdinalIgnoreCase)
-            );
+            var skill = SkillType
+                .List.AsValueEnumerable()
+                .FirstOrDefault(skill =>
+                    skill.Value.Equals(skillLeaf.Key, StringComparison.OrdinalIgnoreCase)
+                );
             if (skill is null)
             {
                 continue;

@@ -2,6 +2,7 @@
 using Markdown;
 using ParadoxPower.CSharpExtensions;
 using ParadoxPower.Process;
+using ParadoxPower.ZLinq;
 using VModer.Core.Extensions;
 using VModer.Core.Infrastructure.Markdown;
 using VModer.Core.Models;
@@ -93,7 +94,7 @@ public sealed class TechnologyHoverStrategy(
     private void AddEnableModulesDescription(Node node, MarkdownDocument builder)
     {
         builder.AppendHeader(Resources.EnableEquipmentModules, 3);
-        foreach (var enableModules in node.LeafValues)
+        foreach (var enableModules in node.LeafValuesValue)
         {
             builder.AppendListItem(
                 localizationFormatService.GetFormatText(enableModules.ValueText),

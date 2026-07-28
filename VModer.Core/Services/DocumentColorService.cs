@@ -6,6 +6,7 @@ using MethodTimer;
 using NLog;
 using ParadoxPower.CSharpExtensions;
 using ParadoxPower.Process;
+using ParadoxPower.ZLinq;
 using VModer.Core.Extensions;
 using VModer.Core.Models;
 using VModer.Core.Services.GameResource;
@@ -205,7 +206,7 @@ public sealed class DocumentColorService(GameFilesService gameFilesService, Defi
 
     private void AddTextColors(Node node, List<ColorInformation> colorsInfo, string filePath)
     {
-        foreach (var childNode in node.Nodes)
+        foreach (var childNode in node.NodesValue)
         {
             if (childNode.Key.Equals("textcolors", StringComparison.OrdinalIgnoreCase))
             {
@@ -308,14 +309,14 @@ public sealed class DocumentColorService(GameFilesService gameFilesService, Defi
     private void AddColorInfoToList(Node colorNode, List<ColorInformation> colorsInfo, string filePath)
     {
         Span<double> colors = stackalloc double[3];
-        var colorLeafValues = colorNode.LeafValues.ToArray();
-        if (colorLeafValues.Length != 3)
+        using var colorLeafValues = colorNode.LeafValuesValue.ToArrayPool();
+        if (colorLeafValues.Size != 3)
         {
             return;
         }
 
         int index = 0;
-        foreach (var leafValue in colorLeafValues)
+        foreach (var leafValue in colorLeafValues.Span)
         {
             if (double.TryParse(leafValue.ValueText, out double color))
             {
@@ -337,7 +338,7 @@ public sealed class DocumentColorService(GameFilesService gameFilesService, Defi
     {
         var (saturationModifier, brightnessModifier) = GetColorModifier(colorNode.Key, fileType);
 
-        var leaves = colorNode.Leaves.ToArray();
+        var leaves = colorNode.LeavesValue.ToArray();
         if (
             leaves.Length == 0
             || leaves.Any(leaf => leaf.Key.Equals("rgb", StringComparison.OrdinalIgnoreCase))

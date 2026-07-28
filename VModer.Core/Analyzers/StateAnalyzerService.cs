@@ -5,6 +5,7 @@ using NLog;
 using ParadoxPower.CSharpExtensions;
 using ParadoxPower.Process;
 using ParadoxPower.Utilities;
+using ParadoxPower.ZLinq;
 using VModer.Core.Extensions;
 using VModer.Core.Models;
 using VModer.Core.Services.GameResource;
@@ -60,19 +61,20 @@ public sealed class StateAnalyzerService
     {
         var victoryPoints = new List<(VictoryPoint, Position.Range)>();
         foreach (
-            var item in historyNode.Nodes.Where(node =>
+            var item in historyNode.NodesValue.Where(node =>
                 node.Key.Equals("victory_points", StringComparison.OrdinalIgnoreCase)
             )
         )
         {
-            var values = item.LeafValues.ToArray();
-            if (values.Length != 2)
+            using var values = item.LeafValuesValue.ToArrayPool();
+            if (values.Size != 2)
             {
                 continue;
             }
 
-            var provinceIdLeafValue = values[0];
-            var valueLeafValue = values[1];
+            var span = values.Span;
+            var provinceIdLeafValue = span[0];
+            var valueLeafValue = span[1];
             if (
                 !provinceIdLeafValue.Value.TryGetInt(out int provinceId)
                 || !valueLeafValue.Value.TryGetInt(out int value)

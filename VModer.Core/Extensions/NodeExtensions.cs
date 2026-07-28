@@ -1,4 +1,5 @@
 ﻿using ParadoxPower.Process;
+using ParadoxPower.ZLinq;
 using VModer.Core.Models;
 using ZLinq;
 
@@ -14,7 +15,7 @@ public static class NodeExtensions
     /// <returns>离光标最近的 <see cref="Node"/></returns>
     public static Node FindAdjacentNodeByPosition(this Node node, LocalPosition cursorPosition)
     {
-        foreach (var childNode in node.Nodes)
+        foreach (var childNode in node.NodesValue)
         {
             var childPosition = childNode.Position;
             if (
@@ -97,11 +98,11 @@ public static class NodeExtensions
     public static bool IsItemNode(this Node rootNode, string containerKey, Node node)
     {
         var containerNodes = rootNode
-            .Nodes.AsValueEnumerable()
+            .NodesValue
             .Where(n => n.Key.Equals(containerKey, StringComparison.OrdinalIgnoreCase));
 
         return containerNodes.Any(containerNode =>
-            containerNode.Nodes.AsValueEnumerable().Any(character => character.Position == node.Position)
+            containerNode.NodesValue.Any(character => character.Position == node.Position)
         );
     }
 }

@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using ParadoxPower.CSharpExtensions;
 using ParadoxPower.Process;
+using ParadoxPower.ZLinq;
 using VModer.Core.Dto;
 using VModer.Core.Extensions;
 using VModer.Core.Helpers;
@@ -11,6 +12,7 @@ using VModer.Core.Models.Modifiers;
 using VModer.Core.Services.GameResource.Base;
 using VModer.Core.Services.GameResource.Localization;
 using VModer.Core.Services.GameResource.Modifiers;
+using ZLinq;
 
 namespace VModer.Core.Services.GameResource;
 
@@ -79,7 +81,7 @@ public sealed class LeaderTraitsService(
     {
         var leaderTraits = new Dictionary<string, LeaderTrait>();
         foreach (
-            var leaderTraitsNode in rootNode.Nodes.Where(node =>
+            var leaderTraitsNode in rootNode.NodesValue.Where(node =>
                 node.Key.Equals("leader_traits", StringComparison.OrdinalIgnoreCase)
             )
         )

@@ -3,6 +3,7 @@ using Markdown;
 using NLog;
 using ParadoxPower.CSharpExtensions;
 using ParadoxPower.Process;
+using ParadoxPower.ZLinq;
 using VModer.Core.Extensions;
 using VModer.Core.Models;
 using VModer.Core.Models.Character;
@@ -64,7 +65,7 @@ public sealed class CharacterHoverStrategy : IHoverStrategy
 
             AddCharacterNameTitle(builder, adjacentNode);
 
-            foreach (var node in adjacentNode.Nodes)
+            foreach (var node in adjacentNode.NodesValue)
             {
                 string text = GetCharacterDisplayTextByType(node);
                 if (string.IsNullOrEmpty(text))
@@ -118,7 +119,7 @@ public sealed class CharacterHoverStrategy : IHoverStrategy
 
     private void AddCharacterNameTitle(MarkdownDocument builder, Node characterNode)
     {
-        var name = characterNode.Leaves.FirstOrDefault(leaf =>
+        var name = characterNode.LeavesValue.FirstOrDefault(leaf =>
             leaf.Key.Equals("name", StringComparison.OrdinalIgnoreCase)
         );
 
@@ -254,7 +255,7 @@ public sealed class CharacterHoverStrategy : IHoverStrategy
 
     private void AddTraitsDescription(Node traitsNode, MarkdownDocument builder, LookUpTraitType type)
     {
-        var traits = traitsNode.LeafValues.Select(trait => trait.Key);
+        var traits = traitsNode.LeafValuesValue.Select(trait => trait.Key);
         builder.AppendHeader($"{Resources.Traits}:", 4);
 
         foreach (string traitKey in traits)
@@ -346,7 +347,7 @@ public sealed class CharacterHoverStrategy : IHoverStrategy
             );
         }
 
-        var traits = leaderNode.Nodes.FirstOrDefault(node =>
+        var traits = leaderNode.NodesValue.FirstOrDefault(node =>
             node.Key.Equals("traits", StringComparison.OrdinalIgnoreCase)
         );
 

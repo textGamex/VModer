@@ -4,9 +4,11 @@ using System.Diagnostics.CodeAnalysis;
 using MethodTimer;
 using ParadoxPower.CSharpExtensions;
 using ParadoxPower.Process;
+using ParadoxPower.ZLinq;
 using VModer.Core.Extensions;
 using VModer.Core.Models;
 using VModer.Core.Services.GameResource.Base;
+using ZLinq;
 
 namespace VModer.Core.Services.GameResource;
 
@@ -50,7 +52,7 @@ public sealed class SpriteService
             }
 
             foreach (
-                var spriteType in spriteTypes.Nodes.Where(node =>
+                var spriteType in spriteTypes.NodesValue.Where(node =>
                     node.Key.Equals("spriteType", StringComparison.OrdinalIgnoreCase)
                 )
             )
@@ -71,7 +73,7 @@ public sealed class SpriteService
         string? textureFilePath = null;
         short frameSum = 1;
 
-        foreach (var leaf in spriteTypeNode.Leaves)
+        foreach (var leaf in spriteTypeNode.LeavesValue)
         {
             if (StringComparer.OrdinalIgnoreCase.Equals("name", leaf.Key))
             {

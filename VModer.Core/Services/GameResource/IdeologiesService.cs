@@ -1,5 +1,7 @@
 ﻿using ParadoxPower.Process;
+using ParadoxPower.ZLinq;
 using VModer.Core.Services.GameResource.Base;
+using ZLinq;
 
 namespace VModer.Core.Services.GameResource;
 
@@ -17,7 +19,7 @@ public sealed class IdeologiesService()
     {
         var ideologies = new List<string>(4);
         foreach (
-            var ideologiesNode in rootNode.Nodes.Where(node =>
+            var ideologiesNode in rootNode.NodesValue.Where(node =>
                 node.Key.Equals("ideologies", StringComparison.OrdinalIgnoreCase)
             )
         )

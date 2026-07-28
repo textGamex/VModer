@@ -2,8 +2,10 @@ using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
 using ParadoxPower.CSharpExtensions;
 using ParadoxPower.Process;
+using ParadoxPower.ZLinq;
 using VModer.Core.Models;
 using VModer.Core.Services.GameResource.Base;
+using ZLinq;
 
 namespace VModer.Core.Services.GameResource;
 
@@ -70,7 +72,7 @@ public sealed class BuildingsService
     private void ParseBuildingNodeToDictionary(Node buildingNode, Dictionary<string, BuildingInfo> buildings)
     {
         int? maxLevel = null;
-        var levelCapNode = buildingNode.Nodes.FirstOrDefault(node =>
+        var levelCapNode = buildingNode.NodesValue.FirstOrDefault(node =>
             StringComparer.OrdinalIgnoreCase.Equals(node.Key, "level_cap")
         );
         if (levelCapNode is null)
@@ -79,7 +81,7 @@ public sealed class BuildingsService
             return;
         }
 
-        foreach (var levelPropertyLeaf in levelCapNode.Leaves)
+        foreach (var levelPropertyLeaf in levelCapNode.LeavesValue)
         {
             if (
                 levelPropertyLeaf.Key.Equals("state_max", StringComparison.OrdinalIgnoreCase)

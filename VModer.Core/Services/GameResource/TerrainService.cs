@@ -2,7 +2,9 @@
 using MethodTimer;
 using ParadoxPower.CSharpExtensions;
 using ParadoxPower.Process;
+using ParadoxPower.ZLinq;
 using VModer.Core.Services.GameResource.Base;
+using ZLinq;
 
 namespace VModer.Core.Services.GameResource;
 
@@ -56,7 +58,7 @@ public sealed class TerrainService : CommonResourcesService<TerrainService, Froz
 
             if (StringComparer.OrdinalIgnoreCase.Equals(node.Key, "categories"))
             {
-                foreach (var terrainCategory in node.Nodes)
+                foreach (var terrainCategory in node.NodesValue)
                 {
                     terrainSet.Add(terrainCategory.Key);
                 }

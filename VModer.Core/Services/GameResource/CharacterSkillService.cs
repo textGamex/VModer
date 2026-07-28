@@ -1,5 +1,6 @@
 using MethodTimer;
 using ParadoxPower.Process;
+using ParadoxPower.ZLinq;
 using VModer.Core.Models.Character;
 using VModer.Core.Services.GameResource.Base;
 using ZLinq;
@@ -56,7 +57,7 @@ public sealed class CharacterSkillService()
     {
         var skills = new List<SkillInfo>();
 
-        foreach (var node in rootNode.Nodes)
+        foreach (var node in rootNode.NodesValue)
         {
             SkillType skillType;
             if (StringComparer.OrdinalIgnoreCase.Equals(node.Key, "leader_attack_skills"))
@@ -103,7 +104,7 @@ public sealed class CharacterSkillService()
         var skillMap = new Dictionary<SkillCharacterType, ushort>(3);
         var skillModifiers = new Dictionary<SkillCharacterType, List<SkillModifier>>(3);
 
-        foreach (var skillInfoNode in node.Nodes)
+        foreach (var skillInfoNode in node.NodesValue)
         {
             var skillTypeLeaf = skillInfoNode.Leaves.FirstOrDefault(leaf =>
                 StringComparer.OrdinalIgnoreCase.Equals(leaf.Key, "type")
