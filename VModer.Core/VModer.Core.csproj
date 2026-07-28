@@ -63,6 +63,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="9.0.9" />
       <ProjectReference Include="..\VModer.Languages\VModer.Languages.csproj" />
     </ItemGroup>
 </Project>
