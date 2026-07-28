@@ -110,6 +110,7 @@ export async function activate(context: ExtensionContext) {
     initializationOptions: {
       GameRootFolderPath: gameRootFolderPath,
       Blacklist: config.get<string[]>("VModer.Blacklist") || [],
+      ErrorCodeBlacklist: config.get<string[]>("VModer.ErrorCodeBlacklist") || [],
       ParseFileMaxSize: config.get<number>("VModer.ParseFileMaxSize") || 2,
       GameLanguage: config.get<string>("VModer.GameLocalizedLanguage") || "default",
       ExtensionPath: context.extensionPath,

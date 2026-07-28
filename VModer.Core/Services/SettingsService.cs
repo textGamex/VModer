@@ -11,4 +11,5 @@ public sealed class SettingsService
     public FrozenSet<string> AnalysisBlackList { get; set; } = [];
     public long ParseFileMaxBytesSize { get; set; }
     public string ExtensionPath { get; set; } = string.Empty;
+    public FrozenSet<string> ErrorCodeBlackList { get; set; } = [];
 }

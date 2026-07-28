@@ -260,6 +260,11 @@ public sealed class LanguageServerHostedService : IHostedService
                 .InitializationOptions?.RootElement.GetProperty("Blacklist")
                 .EnumerateArray()
                 .Select(element => element.GetString() ?? string.Empty) ?? [];
+        var errorCodeBlackList =
+            param
+                .InitializationOptions?.RootElement.GetProperty("ErrorCodeBlacklist")
+                .EnumerateArray()
+                .Select(element => element.GetString() ?? string.Empty) ?? [];
         // 传来的是 MB, 要转成 byte
         long parseFileMaxBytesSize = (long)(
             (param.InitializationOptions?.RootElement.GetProperty("ParseFileMaxSize").GetDouble() ?? 0)
@@ -279,6 +284,7 @@ public sealed class LanguageServerHostedService : IHostedService
             ? gameLanguageEnum
             : GameLanguage.Default;
         _settings.ExtensionPath = extensionPath;
+        _settings.ErrorCodeBlackList = errorCodeBlackList.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
         Log.Info("Settings: {@Settings}", _settings);
     }

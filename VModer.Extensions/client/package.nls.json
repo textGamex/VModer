@@ -7,5 +7,6 @@
 	"vmoder.openLogsTitle": "Open VModer log folder",
 	"vmoder.clearImageCacheTitle": "Clear local image cache",
 	"vmoder.openTraitsViewTitle": "Character Traits Query",
-	"vmoder.openModifierQuerierView": "Modifier Query"
+	"vmoder.openModifierQuerierView": "Modifier Query",
+	"VModer.ErrorCodeBlacklist": "The list of error codes that will be ignored."
 }

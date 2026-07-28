@@ -7,5 +7,6 @@
 	"vmoder.openLogsTitle": "打开 VModer 日志文件夹",
 	"vmoder.clearImageCacheTitle": "清除本地图片缓存",
 	"vmoder.openTraitsViewTitle": "人物特质查询",
-	"vmoder.openModifierQuerierView": "修饰符查询器"
+	"vmoder.openModifierQuerierView": "修饰符查询器",
+	"VModer.ErrorCodeBlacklist": "忽略的错误代码列表."
 }
