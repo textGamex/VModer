@@ -11,11 +11,13 @@ army_core_attack_factor,army;aggressive
 army_infantry_attack_factor,army;aggressive
 army_morale,army;defensive;aggressive
 army_morale_factor,army;defensive;aggressive
+army_non_core_attack_factor,army;aggressive
 army_org,army;defensive;aggressive
 army_org_factor,army;defensive;aggressive
 attrition,army;defensive;aggressive
 attrition_for_controller,army;defensive;aggressive
 breakthrough_factor,army;aggressive
+cannot_retreat_while_attacking,army;aggressive
 carrier_capacity_penalty_reduction,naval;unit_leader;aggressive
 carrier_sortie_hours_delay,naval;unit_leader;aggressive
 carrier_traffic,naval;unit_leader;aggressive
@@ -172,6 +174,7 @@ army_experience_from_volunteers,army
 army_fuel_capacity_factor,army
 army_fuel_consumption_factor,army
 army_infantry_defence_factor,army;defensive
+army_non_core_defence_factor,army;defensive
 army_org_regain,army
 army_retreat_speed_factor,army;defensive
 army_speed_factor,army
@@ -181,8 +184,11 @@ assign_army_leader_cp_cost,country;army
 attack_bonus_against,army
 attack_bonus_against_cores,army
 breakthrough_bonus_against,army
+cannot_retreat_while_defending,army;defensive
 cas_damage_reduction,army
+casualty_trickleback,army
 cavalry_defence_factor,army;defensive
+combat_entrenchment,army;defensive
 command_abilities_cost_factor,country;army
 command_power_gain,country;army
 command_power_gain_mult,country;army
@@ -265,6 +271,7 @@ modifier_army_sub_unit_paratrooper_max_org_factor,army
 modifier_army_sub_unit_paratrooper_speed_factor,army
 motorized_defence_factor,army;defensive
 mountaineers_special_forces_contribution_factor,army
+org_damage_multiplier,army;defensive
 org_loss_at_low_org_factor,army
 paratroopers_special_forces_contribution_factor,army
 rangers_special_forces_contribution_factor,army
@@ -277,11 +284,13 @@ special_forces_cap_flat,army
 special_forces_defence_factor,army;defensive
 special_forces_min,army
 special_forces_training_time_factor,army;war_production
+str_damage_multiplier,army;defensive
 terrain_penalty_reduction,army;defensive
 terrain_trait_xp_gain_factor,naval;country;army
 training_time_army,army;war_production
 training_time_army_factor,army;war_production
 unit_upkeep_attrition_factor,army
+war_support_reduction_on_damage,army;defensive
 autonomy_gain,autonomy
 autonomy_gain_global_factor,autonomy
 autonomy_gain_ll_to_overlord,autonomy
@@ -354,6 +363,8 @@ enemy_operative_forced_into_hiding_time_factor,unit_leader;country
 enemy_operative_harmed_time_factor,unit_leader;country
 enemy_operative_intel_extraction_rate,unit_leader;country
 enemy_spy_negative_status_factor,country;state
+energy_gain_factor,country
+energy_scale_per_trade_factory_export_factor,country
 equipment_capture,country
 equipment_capture_factor,country
 equipment_conversion_speed,country;war_production
@@ -400,6 +411,7 @@ intel_network_gain,unit_leader;country;state;intelligence_agency
 intel_network_gain_factor,unit_leader;country;state;intelligence_agency
 join_faction_tension,country
 land_bunker_effectiveness_factor,country;state
+land_doctrine_cost_factor,country
 land_equipment_upgrade_xp_cost,country
 land_reinforce_rate,country;war_production
 lend_lease_tension,country
@@ -432,6 +444,7 @@ mic_to_target_factor,country
 min_export,country;war_production
 minimum_training_level,country;war_production
 monthly_population,country;war_production
+naval_doctrine_cost_factor,country
 naval_equipment_upgrade_xp_cost,country
 naval_invasion_plan_cap,country
 naval_invasion_prep_days,country
@@ -653,10 +666,12 @@ local_building_slots,state;war_production
 local_building_slots_factor,state;war_production
 local_factories,state;war_production
 local_factory_energy_consumption,state
+local_factory_energy_consumption_per_infrastructure,state
 local_factory_sabotage,state
 local_manpower,state;war_production
 local_non_core_manpower,state;war_production
 local_non_core_supply_impact_factor,state
+local_resource_gain_efficiency_per_infrastructure,state
 local_resources,state;war_production
 local_resources_factor,state;war_production
 local_supplies,state;war_production

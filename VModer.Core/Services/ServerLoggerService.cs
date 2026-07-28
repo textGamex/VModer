@@ -35,4 +35,4 @@ public sealed class ServerLoggerService(LanguageServer server)
 [JsonSerializable(typeof(ServerLoggerService.LogMessageParams))]
 [JsonSerializable(typeof(MessageType))]
 [JsonSerializable(typeof(string))]
-internal partial class JsonProtocolContext : JsonSerializerContext;
+internal sealed partial class JsonProtocolContext : JsonSerializerContext;

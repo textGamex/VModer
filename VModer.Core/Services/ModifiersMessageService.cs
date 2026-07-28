@@ -90,49 +90,75 @@ public sealed class ModifiersMessageService
             string name = dynamicCsv.GetField<string>("Name") ?? string.Empty;
             string[] categories = dynamicCsv.GetField<string>("Categories")?.Split(';') ?? [];
 
-            if (name.Contains("<Building>"))
+            if (name.Contains("<Building>", StringComparison.OrdinalIgnoreCase))
             {
                 foreach (var building in buildingsService.All)
                 {
-                    modifiers.Add(new ModifierMessage(name.Replace("<Building>", building.Name), categories));
+                    modifiers.Add(
+                        new ModifierMessage(
+                            name.Replace("<Building>", building.Name, StringComparison.OrdinalIgnoreCase),
+                            categories
+                        )
+                    );
                 }
             }
-            else if (name.Contains("<Resource>"))
+            else if (name.Contains("<Resource>", StringComparison.OrdinalIgnoreCase))
             {
                 foreach (string oreName in oreService.All)
                 {
-                    modifiers.Add(new ModifierMessage(name.Replace("<Resource>", oreName), categories));
+                    modifiers.Add(
+                        new ModifierMessage(
+                            name.Replace("<Resource>", oreName, StringComparison.OrdinalIgnoreCase),
+                            categories
+                        )
+                    );
                 }
             }
-            else if (name.Contains("<Ideology>"))
+            else if (name.Contains("<Ideology>", StringComparison.OrdinalIgnoreCase))
             {
                 foreach (string ideologyName in ideologiesService.All)
                 {
-                    modifiers.Add(new ModifierMessage(name.Replace("<Ideology>", ideologyName), categories));
+                    modifiers.Add(
+                        new ModifierMessage(
+                            name.Replace("<Ideology>", ideologyName, StringComparison.OrdinalIgnoreCase),
+                            categories
+                        )
+                    );
                 }
             }
-            else if (name.Contains("<Unit>"))
+            else if (name.Contains("<Unit>", StringComparison.OrdinalIgnoreCase))
             {
                 foreach (string unitName in unitService.All)
                 {
-                    modifiers.Add(new ModifierMessage(name.Replace("<Unit>", unitName), categories));
+                    modifiers.Add(
+                        new ModifierMessage(
+                            name.Replace("<Unit>", unitName, StringComparison.OrdinalIgnoreCase),
+                            categories
+                        )
+                    );
                 }
             }
-            else if (name.Contains("<Operation>"))
+            else if (name.Contains("<Operation>", StringComparison.OrdinalIgnoreCase))
             {
                 foreach (string operationName in operationsService.OperationNames)
                 {
                     modifiers.Add(
-                        new ModifierMessage(name.Replace("<Operation>", operationName), categories)
+                        new ModifierMessage(
+                            name.Replace("<Operation>", operationName, StringComparison.OrdinalIgnoreCase),
+                            categories
+                        )
                     );
                 }
             }
-            else if (name.Contains("<SpecialProject>"))
+            else if (name.Contains("<SpecialProject>", StringComparison.OrdinalIgnoreCase))
             {
                 foreach (string projectName in specialProjectsService.SpecialProjectNames)
                 {
                     modifiers.Add(
-                        new ModifierMessage(name.Replace("<SpecialProject>", projectName), categories)
+                        new ModifierMessage(
+                            name.Replace("<SpecialProject>", projectName, StringComparison.OrdinalIgnoreCase),
+                            categories
+                        )
                     );
                 }
             }

@@ -144,6 +144,7 @@
 		"@tomjs/vscode-webview": "^2.0.2",
 		"@vscode-elements/elements": "^2.5.1",
 		"@vscode/extension-telemetry": "^1.5.2",
+		"es-toolkit": "^1.50.0",
 		"marked": "^18.0.7",
 		"vscode-languageclient": "^9.0.1",
 		"vue": "^3.5.40"

@@ -46,10 +46,10 @@ import { WebviewApi } from "@tomjs/vscode-webview";
 import { onMounted, onUnmounted, ref } from "vue";
 import type { ModifierDto } from "../dto/ModifierDto";
 import { marked } from "marked";
-import { uniq } from "lodash-es";
 import type { VscodeMultiSelect } from "@vscode-elements/elements";
 import type { ModifierQuerierViewI18n } from "../types/ModifierQuerierViewI18";
 import { initMarked } from "../helpers/markdownHelper";
+import { flatten, uniq } from 'es-toolkit';
 
 initMarked();
 
@@ -77,7 +77,7 @@ onMounted(() => {
 vscode.on<ModifierDto[]>(modifierListKey, (data) => {
   rawModifierList = data;
   modifierList.value = data;
-  modiiferCategories.value = uniq(data.map((item) => item.Categories).flat());
+  modiiferCategories.value = uniq(flatten(data.map((item) => item.Categories)));
 });
 
 vscode.on<ModifierQuerierViewI18n>(i18nKey, (data) => {

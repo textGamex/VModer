@@ -33,6 +33,12 @@ foreach (var element in document.All)
 
     if (isReady && element.TagName.Equals("li", StringComparison.OrdinalIgnoreCase))
     {
+        // 有些 <li> 没有子元素, 跳过
+        if (element.Children.Length == 0)
+        {
+            continue;
+        }
+
         var link = element.Children[0];
         string? query = link.GetAttribute("href");
         if (string.IsNullOrWhiteSpace(query))
@@ -74,7 +80,13 @@ foreach (var element in document.All)
             continue;
         }
         
-        string categories = categoriesElement.TextContent.Split(':')[1];
+        var categoriesParts = categoriesElement.TextContent.Split(':');
+        if (categoriesParts.Length < 2)
+        {
+            continue;
+        }
+
+        string categories = categoriesParts[1];
 
         if (addToDynamicModifiers)
         {
