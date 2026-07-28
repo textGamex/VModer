@@ -4,7 +4,7 @@
 	"description": "A HOI4 language server",
 	"author": "textGamex",
 	"license": "Apache-2.0",
-	"version": "0.14.0",
+	"version": "0.15.0",
 	"preview": true,
 	"repository": {
 		"type": "git",
@@ -132,22 +132,20 @@
 		"@stylistic/eslint-plugin": "^2.9.0",
 		"@tomjs/tsconfig": "^1.7.1",
 		"@tomjs/vite-plugin-vscode": "^3.2.1",
-		"@types/lodash-es": "^4.17.12",
 		"@types/node": "^20",
 		"@types/vscode": "^1.86.0",
-		"@vitejs/plugin-vue": "^6.0.2",
+		"@vitejs/plugin-vue": "^6.0.8",
 		"eslint": "^9.39.1",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.49.0",
-		"vue-tsc": "^3.1.8"
+		"vue-tsc": "^3.3.8"
 	},
 	"dependencies": {
 		"@tomjs/vscode-webview": "^2.0.2",
-		"@vscode-elements/elements": "^2.3.1",
-		"@vscode/extension-telemetry": "^1.2.0",
-		"lodash-es": "^4.17.21",
-		"marked": "^17.0.1",
+		"@vscode-elements/elements": "^2.5.1",
+		"@vscode/extension-telemetry": "^1.5.2",
+		"marked": "^18.0.7",
 		"vscode-languageclient": "^9.0.1",
-		"vue": "^3.5.25"
+		"vue": "^3.5.40"
 	}
 }
